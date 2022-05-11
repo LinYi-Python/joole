@@ -6,14 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * @ClassName User
+ * @ClassName Manufacturer
  * @Description TODO
  * @Author Yi Lin
- * @Date 5/10/22 22:45
+ * @Date 5/11/22 01:23
  * @Version 1.0
  **/
-@Entity(name = "user")
-public class User {
+@Entity(name = "manufacturer")
+public class Manufacturer {
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -24,11 +25,17 @@ public class User {
     @Column(name = "password", length = 20)
     private String password;
 
-    @Column(name = "name", length = 20)
-    private String name;
+    @Column(name = "department", length = 20)
+    private String department;
 
-    @Column(name = "profile_picture_url", length = 20)
-    private String profilePictureUrl;
+    @Column(name = "phone", length = 20)
+    private String phone;
+
+    @Column(name = "email", length = 20)
+    private String email;
+
+    @Column(name = "web_url", length = 20)
+    private String webUrl;
 
     @Column(name = "create_time", length = 20)
     private String createTime;
@@ -36,26 +43,21 @@ public class User {
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
-    public User(String userName, String password, String name, String profilePictureUrl, String createTime, String updateTime) {
+    public Manufacturer() {
+    }
+
+    public Manufacturer(String userName, String password,
+                        String department, String phone,
+                        String email, String webUrl,
+                        String createTime, String updateTime) {
         this.userName = userName;
         this.password = password;
-        this.name = name;
-        this.profilePictureUrl = profilePictureUrl;
+        this.department = department;
+        this.phone = phone;
+        this.email = email;
+        this.webUrl = webUrl;
         this.createTime = createTime;
         this.updateTime = updateTime;
-    }
-
-    public User() {
-
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUserName() {
@@ -74,20 +76,36 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
     public String getCreateTime() {
