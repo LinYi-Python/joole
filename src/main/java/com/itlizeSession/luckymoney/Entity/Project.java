@@ -1,0 +1,31 @@
+package com.itlizeSession.luckymoney.Entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+/**
+ * @ClassName Project
+ * @Description TODO
+ * @Author Yi Lin
+ * @Date 5/11/22 00:15
+ * @Version 1.0
+ **/
+@Entity
+public class Project {
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @Column(name = "user_id", length = 20)
+    private Integer user_id;
+
+    @Column(name = "create_time", length = 20)
+    private String createTime;
+
+    @Column(name = "update_time", length = 20)
+    private String updateTime;
+
+
+}
