@@ -1,13 +1,8 @@
-package com.itlizeSession.luckymoney.Entity;
-
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.beans.factory.annotation.Value;
+package com.itlizeSession.joole.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 
 /**

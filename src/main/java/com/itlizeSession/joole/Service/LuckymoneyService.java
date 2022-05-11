@@ -1,6 +1,6 @@
-package com.itlizeSession.luckymoney.Service;
+package com.itlizeSession.joole.Service;
 
-import com.itlizeSession.luckymoney.Entity.Luckymoney;
+import com.itlizeSession.joole.Entity.Luckymoney;
 
 import java.util.List;
 

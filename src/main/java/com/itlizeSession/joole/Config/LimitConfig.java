@@ -1,4 +1,4 @@
-package com.itlizeSession.luckymoney.Config;
+package com.itlizeSession.joole.Config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

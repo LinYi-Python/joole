@@ -1,4 +1,4 @@
-package com.itlizeSession.luckymoney.Entity;
+package com.itlizeSession.joole.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,10 +36,13 @@ public class User {
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
-    public User(String userName, String password, String name) {
+    public User(String userName, String password, String name, String profilePictureUrl, String createTime, String updateTime) {
         this.userName = userName;
         this.password = password;
         this.name = name;
+        this.profilePictureUrl = profilePictureUrl;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 
     public User() {

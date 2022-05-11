@@ -1,10 +1,9 @@
-package com.itlizeSession.luckymoney.Service.impl;
+package com.itlizeSession.joole.Service.impl;
 
-import com.itlizeSession.luckymoney.Entity.Luckymoney;
-import com.itlizeSession.luckymoney.Repository.LuckmoneyRepository;
-import com.itlizeSession.luckymoney.Service.LuckymoneyService;
+import com.itlizeSession.joole.Entity.Luckymoney;
+import com.itlizeSession.joole.Repository.LuckmoneyRepository;
+import com.itlizeSession.joole.Service.LuckymoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

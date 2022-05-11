@@ -1,11 +1,9 @@
-package com.itlizeSession.luckymoney.Repository;
+package com.itlizeSession.joole.Repository;
 
-import com.itlizeSession.luckymoney.Entity.Luckymoney;
+import com.itlizeSession.joole.Entity.Luckymoney;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by yang shu

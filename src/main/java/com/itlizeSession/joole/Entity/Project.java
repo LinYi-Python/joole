@@ -1,4 +1,4 @@
-package com.itlizeSession.luckymoney.Entity;
+package com.itlizeSession.joole.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
