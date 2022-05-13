@@ -1,5 +1,8 @@
 package com.itlizeSession.joole.Entity;
 
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,21 +22,23 @@ public class TechnicalDetail {
     @GeneratedValue
     private Integer id;
 
+    @Column(name = "product_type_id", length = 20)
+    private Integer productTypeId;
+
     @Column(name = "technical_detail_name", length = 20)
     private String technicalDetailName;
 
     @Column(name = "technical_detail_number", length = 20)
     private Integer technicalDetailNumber;
 
-    @Column(name = "techninal_detail_comment", length = 20)
-    private String techninalDetailComment;
+//    @Column(name = "techninal_detail_comment", length = 20)
+//    private String techninalDetailComment;
 
-    @Column(name = "product_type_id", length = 20)
-    private Integer productTypeId;
-
+    @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
+    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -41,11 +46,11 @@ public class TechnicalDetail {
     }
 
     public TechnicalDetail(String technicalDetailName, Integer technicalDetailNumber,
-                           String techninalDetailComment, Integer productTypeId,
+                            Integer productTypeId,
                            String createTime, String updateTime) {
         this.technicalDetailName = technicalDetailName;
         this.technicalDetailNumber = technicalDetailNumber;
-        this.techninalDetailComment = techninalDetailComment;
+
         this.productTypeId = productTypeId;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -67,13 +72,6 @@ public class TechnicalDetail {
         this.technicalDetailNumber = technicalDetailNumber;
     }
 
-    public String getTechninalDetailComment() {
-        return techninalDetailComment;
-    }
-
-    public void setTechninalDetailComment(String techninalDetailComment) {
-        this.techninalDetailComment = techninalDetailComment;
-    }
 
     public Integer getProductTypeId() {
         return productTypeId;

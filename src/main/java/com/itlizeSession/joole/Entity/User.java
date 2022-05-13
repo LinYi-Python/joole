@@ -1,5 +1,8 @@
 package com.itlizeSession.joole.Entity;
 
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,9 +33,13 @@ public class User {
     @Column(name = "profile_picture_url", length = 20)
     private String profilePictureUrl;
 
+//    private boolean isAdmin; // 0 is admin, 1 is user
+
+    @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
+    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
     private String updateTime;
 

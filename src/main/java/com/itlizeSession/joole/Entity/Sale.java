@@ -1,5 +1,8 @@
 package com.itlizeSession.joole.Entity;
 
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,13 +34,14 @@ public class Sale {
     @Column(name = "web_url", length = 20)
     private String webUrl;
 
-    @Column(name = "manufacturer_id", length = 20)
-    private Integer manufacturerId;
+    @Column(name = "product_id", length = 20)
+    private Integer productId;
 
-
+    @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
+    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -45,13 +49,13 @@ public class Sale {
     }
 
     public Sale(String name, String email, String phone,
-                String webUrl, Integer manufacturerId,
+                String webUrl, Integer productId,
                 String createTime, String updateTime) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.webUrl = webUrl;
-        this.manufacturerId = manufacturerId;
+        this.productId = productId;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -88,12 +92,20 @@ public class Sale {
         this.webUrl = webUrl;
     }
 
-    public Integer getManufacturerId() {
-        return manufacturerId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setManufacturerId(Integer manufacturerId) {
-        this.manufacturerId = manufacturerId;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getCreateTime() {

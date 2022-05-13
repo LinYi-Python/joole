@@ -1,5 +1,7 @@
 package com.itlizeSession.joole.Entity;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class ProductType {
     @Column(name = "product_type_detail", length = 50)
     private String productTypeDetail;
 
+    @CreatedDate
     @Column(name = "create_time", length = 50)
     private String createTime;
 

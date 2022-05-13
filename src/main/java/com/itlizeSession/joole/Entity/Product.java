@@ -1,5 +1,8 @@
 package com.itlizeSession.joole.Entity;
 
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +22,9 @@ public class Product {
     @GeneratedValue
     private Integer id;
 
+    @Column(name = "name", length = 20)
+    private String name;
+
     @Column(name = "product_type_id", length = 20)
     private Integer productTypeId;
 
@@ -34,12 +40,11 @@ public class Product {
     @Column(name = "brand", length = 20)
     private String brand;
 
-    @Column(name = "certification", length = 20)
-    private String certification;
-
+    @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
+    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -48,13 +53,12 @@ public class Product {
 
     public Product(Integer productTypeId, Integer technicalDetailId,
                    Integer manufacturerDetailId, Integer modelYear, String brand,
-                   String certification, String createTime, String updateTime) {
+                   String createTime, String updateTime) {
         this.productTypeId = productTypeId;
         this.technicalDetailId = technicalDetailId;
         this.manufacturerDetailId = manufacturerDetailId;
         this.modelYear = modelYear;
         this.brand = brand;
-        this.certification = certification;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -99,13 +103,6 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getCertification() {
-        return certification;
-    }
-
-    public void setCertification(String certification) {
-        this.certification = certification;
-    }
 
     public String getCreateTime() {
         return createTime;
