@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 public class LuckymoneyServiceImp implements LuckymoneyService {
 
-
 	@Autowired
 	private LuckmoneyRepository repository;
 
@@ -33,19 +32,19 @@ public class LuckymoneyServiceImp implements LuckymoneyService {
 
 	/**
 	 * Transaction
-	 *  inventory > order
+	 * inventory > order
 	 */
 	@Transactional
 	public void createTwo() {
 		Luckymoney luckymoney1 = new Luckymoney();
-		luckymoney1.setProducer("Yang Shu");
-		luckymoney1.setMoney(new BigDecimal("520"));
+		luckymoney1.setProducer("AAAAA");
+		luckymoney1.setMoney(new BigDecimal("333"));
 		luckymoney1.setConsumer("MOM");
 		repository.save(luckymoney1);
 
 		Luckymoney luckymoney2 = new Luckymoney();
-		luckymoney2.setProducer("Yang Shu");
-		luckymoney2.setMoney(new BigDecimal("1314"));
+		luckymoney2.setProducer("dsadsau");
+		luckymoney2.setMoney(new BigDecimal("13333"));
 		luckymoney2.setConsumer("MOM");
 		repository.save(luckymoney2);
 	}

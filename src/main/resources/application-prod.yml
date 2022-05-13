@@ -8,4 +8,4 @@ limit:
   maxMoney: 9999
   description: min${limit.minMoney}dollars, max${limit.maxMoney}dollars
 
-  myUserName: Yi Lin
+  myUserName: Yang

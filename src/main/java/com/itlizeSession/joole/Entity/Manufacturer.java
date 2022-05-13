@@ -1,6 +1,5 @@
 package com.itlizeSession.joole.Entity;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Column;
@@ -44,7 +43,7 @@ public class Manufacturer {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-    @UpdateTimestamp
+  
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
