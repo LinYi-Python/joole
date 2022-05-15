@@ -39,6 +39,10 @@ public class User {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed
     @Column(name = "update_time", length = 20)
     private String updateTime;
 

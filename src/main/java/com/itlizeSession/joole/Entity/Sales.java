@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @Version 1.0
  **/
 @Entity(name = "sale")
-public class Sale {
+public class Sales {
 
     @Id
     @GeneratedValue
@@ -41,14 +41,18 @@ public class Sale {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
+<<<<<<< HEAD:src/main/java/com/itlizeSession/joole/Entity/Sale.java
    
+=======
+ 
+>>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed:src/main/java/com/itlizeSession/joole/Entity/Sales.java
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
-    public Sale() {
+    public Sales() {
     }
 
-    public Sale(String name, String email, String phone,
+    public Sales(String name, String email, String phone,
                 String webUrl, Integer productId,
                 String createTime, String updateTime) {
         this.name = name;
