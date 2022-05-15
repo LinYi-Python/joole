@@ -3,10 +3,15 @@ package com.itlizeSession.joole.Entity;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  * @ClassName Sale
@@ -43,6 +48,10 @@ public class Sales {
 
     @Column(name = "update_time", length = 20)
     private String updateTime;
+
+    // @OneToMany(targetEntity = Product.class) // (mappedBy = "Product_Num")
+    // @JoinColumn(name = "Sales_ID")
+    // private List<Product> product = new ArrayList<>();
 
     public Sales() {
     }
@@ -122,4 +131,12 @@ public class Sales {
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
+
+    // public List<Product> getProduct() {
+    // return this.product;
+    // }
+
+    // public void setProduct(List<Product> product) {
+    // this.product = product;
+    // }
 }
