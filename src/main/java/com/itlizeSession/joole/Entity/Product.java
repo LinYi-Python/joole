@@ -44,11 +44,6 @@ public class Product {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-<<<<<<< HEAD
-   
-=======
-    
->>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -56,8 +51,8 @@ public class Product {
     }
 
     public Product(Integer productTypeId, Integer technicalDetailId,
-                   Integer manufacturerDetailId, Integer modelYear, String brand,
-                   String createTime, String updateTime) {
+            Integer manufacturerDetailId, Integer modelYear, String brand,
+            String createTime, String updateTime) {
         this.productTypeId = productTypeId;
         this.technicalDetailId = technicalDetailId;
         this.manufacturerDetailId = manufacturerDetailId;
@@ -106,7 +101,6 @@ public class Product {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
 
     public String getCreateTime() {
         return createTime;

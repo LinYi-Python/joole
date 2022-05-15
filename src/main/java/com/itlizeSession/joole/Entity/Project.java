@@ -28,11 +28,6 @@ public class Project {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-<<<<<<< HEAD
-  
-=======
- 
->>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -44,7 +39,6 @@ public class Project {
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
-
 
     public Integer getId() {
         return id;

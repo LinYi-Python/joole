@@ -31,18 +31,13 @@ public class TechnicalDetail {
     @Column(name = "technical_detail_number", length = 20)
     private Integer technicalDetailNumber;
 
-//    @Column(name = "techninal_detail_comment", length = 20)
-//    private String techninalDetailComment;
+    // @Column(name = "techninal_detail_comment", length = 20)
+    // private String techninalDetailComment;
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-<<<<<<< HEAD
-  
-=======
- 
->>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -50,8 +45,8 @@ public class TechnicalDetail {
     }
 
     public TechnicalDetail(String technicalDetailName, Integer technicalDetailNumber,
-                            Integer productTypeId,
-                           String createTime, String updateTime) {
+            Integer productTypeId,
+            String createTime, String updateTime) {
         this.technicalDetailName = technicalDetailName;
         this.technicalDetailNumber = technicalDetailNumber;
 
@@ -75,7 +70,6 @@ public class TechnicalDetail {
     public void setTechnicalDetailNumber(Integer technicalDetailNumber) {
         this.technicalDetailNumber = technicalDetailNumber;
     }
-
 
     public Integer getProductTypeId() {
         return productTypeId;

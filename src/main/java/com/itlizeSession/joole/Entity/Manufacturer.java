@@ -43,11 +43,6 @@ public class Manufacturer {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-<<<<<<< HEAD
-   
-=======
-  
->>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -55,9 +50,9 @@ public class Manufacturer {
     }
 
     public Manufacturer(String userName, String password,
-                        String department, String phone,
-                        String email, String webUrl,
-                        String createTime, String updateTime) {
+            String department, String phone,
+            String email, String webUrl,
+            String createTime, String updateTime) {
         this.userName = userName;
         this.password = password;
         this.department = department;

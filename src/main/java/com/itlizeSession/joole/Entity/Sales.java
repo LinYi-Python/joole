@@ -41,11 +41,6 @@ public class Sales {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-<<<<<<< HEAD:src/main/java/com/itlizeSession/joole/Entity/Sale.java
-   
-=======
- 
->>>>>>> 115296f37c0df20bf96a5891b707d677aee604ed:src/main/java/com/itlizeSession/joole/Entity/Sales.java
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
@@ -53,8 +48,8 @@ public class Sales {
     }
 
     public Sales(String name, String email, String phone,
-                String webUrl, Integer productId,
-                String createTime, String updateTime) {
+            String webUrl, Integer productId,
+            String createTime, String updateTime) {
         this.name = name;
         this.email = email;
         this.phone = phone;
