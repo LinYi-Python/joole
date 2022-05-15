@@ -33,17 +33,17 @@ public class User {
     @Column(name = "profile_picture_url", length = 20)
     private String profilePictureUrl;
 
-//    private boolean isAdmin; // 0 is admin, 1 is user
+    // private boolean isAdmin; // 0 is admin, 1 is user
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
     private String updateTime;
 
-    public User(String userName, String password, String name, String profilePictureUrl, String createTime, String updateTime) {
+    public User(String userName, String password, String name, String profilePictureUrl, String createTime,
+            String updateTime) {
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -55,7 +55,6 @@ public class User {
     public User() {
 
     }
-
 
     public Integer getId() {
         return id;

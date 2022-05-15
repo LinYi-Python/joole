@@ -41,7 +41,7 @@ public class Sale {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-    @UpdateTimestamp
+   
     @Column(name = "update_time", length = 20)
     private String updateTime;
 

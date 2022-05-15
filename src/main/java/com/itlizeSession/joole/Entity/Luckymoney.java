@@ -16,15 +16,13 @@ public class Luckymoney {
 	@GeneratedValue
 	private Integer id;
 
-
-
 	private BigDecimal money;
 
 	/**
 	 * creat producer
 	 */
 
-	//@Value("Jack")
+	// @Value("Jack")
 	private String producer;
 
 	/**
@@ -32,7 +30,6 @@ public class Luckymoney {
 	 */
 
 	private String consumer;
-
 
 	public Luckymoney() {
 	}
