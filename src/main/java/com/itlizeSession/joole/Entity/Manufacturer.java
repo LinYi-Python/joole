@@ -1,11 +1,20 @@
 package com.itlizeSession.joole.Entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  * @ClassName Manufacturer
@@ -41,10 +50,48 @@ public class Manufacturer {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
+
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "ProductList_ID_FK")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Product> products = new ArrayList<>();
+
+    public void addProducts(Product product) {
+        if (products.contains(product)) {
+            return;
+        }
+        products.add(product);
+        product.setManufacturer(this);
+    }
+
+    public void removeProducts(Product product) {
+        if (!products.contains(product)) {
+            return;
+        }
+        products.remove(product);
+        product.setManufacturer(null);
+    }
+
+    @Override
+    public String toString() {
+        return "Manufacturer{" + "id=" + id + "}";
+    }
+
+    public String toJson(List<String> entries) {
+        String result = null;
+        List<String> colsContent = new ArrayList<>();
+        for (String entry : entries) {
+            colsContent.add(entry);
+        }
+        result = "{" + String.join(",", colsContent) + "}";
+        return String.format("{\"ManufacturerId\" : \"%d\", \"content\" : \"%s\"}", getId(), result);
+
+    }
 
     public Manufacturer() {
     }
@@ -52,7 +99,7 @@ public class Manufacturer {
     public Manufacturer(String userName, String password,
             String department, String phone,
             String email, String webUrl,
-            String createTime, String updateTime) {
+            Timestamp createTime, Timestamp updateTime) {
         this.userName = userName;
         this.password = password;
         this.department = department;
@@ -61,6 +108,10 @@ public class Manufacturer {
         this.webUrl = webUrl;
         this.createTime = createTime;
         this.updateTime = updateTime;
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 
     public String getUserName() {
@@ -111,19 +162,19 @@ public class Manufacturer {
         this.webUrl = webUrl;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

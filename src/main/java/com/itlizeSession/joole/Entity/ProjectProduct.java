@@ -1,9 +1,13 @@
 package com.itlizeSession.joole.Entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @ClassName ProjectProduct
@@ -24,6 +28,10 @@ public class ProjectProduct {
 
     @Column(name = "product_id", length = 20)
     private Integer productId;
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Product_FK")
+    private Project project;
 
     public ProjectProduct() {
     }
@@ -47,5 +55,13 @@ public class ProjectProduct {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public Project getProject() {
+        return this.project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

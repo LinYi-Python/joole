@@ -1,17 +1,13 @@
 package com.itlizeSession.joole.Entity;
 
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+
+import org.springframework.data.annotation.CreatedDate;
 
 /**
  * @ClassName Sale
@@ -44,21 +40,17 @@ public class Sales {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
     @Column(name = "update_time", length = 20)
-    private String updateTime;
-
-    // @OneToMany(targetEntity = Product.class) // (mappedBy = "Product_Num")
-    // @JoinColumn(name = "Sales_ID")
-    // private List<Product> product = new ArrayList<>();
+    private Timestamp updateTime;
 
     public Sales() {
     }
 
     public Sales(String name, String email, String phone,
             String webUrl, Integer productId,
-            String createTime, String updateTime) {
+            Timestamp createTime, Timestamp updateTime) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -116,19 +108,19 @@ public class Sales {
         this.productId = productId;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 

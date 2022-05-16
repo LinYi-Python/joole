@@ -1,6 +1,6 @@
 package com.itlizeSession.joole.Repository;
 
-import com.itlizeSession.joole.Entity.Manufacturer;
+import com.itlizeSession.joole.Entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface ManufacturerRepository extends JpaRepository<Manufacturer, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }
