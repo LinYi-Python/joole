@@ -1,67 +1,54 @@
 package com.itlizeSession.joole.Entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/**
- * @ClassName ProjectProduct
- * @Description TODO
- * @Author Yi Lin
- * @Date 5/11/22 00:47
- * @Version 1.0
- **/
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity(name = "project_product")
 public class ProjectProduct {
-
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer ProjectProductId;
 
-    @Column(name = "project_id", length = 20)
-    private Integer projectId;
-
-    @Column(name = "product_id", length = 20)
-    private Integer productId;
-
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "Product_FK")
+    @ManyToOne(targetEntity = Project.class, cascade = CascadeType.DETACH)
     private Project project;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.DETACH, mappedBy = "projectProductId")
+    private List<Product> MYproduct = new ArrayList<>();
 
     public ProjectProduct() {
     }
 
-    public ProjectProduct(Integer projectId, Integer productId) {
-        this.projectId = projectId;
-        this.productId = productId;
+    public ProjectProduct(Integer projectProductId, Project project, List<Product> MYproduct) {
+        ProjectProductId = projectProductId;
+        this.project = project;
+        this.MYproduct = MYproduct;
     }
 
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public Integer getProjectProductId() {
+        return ProjectProductId;
     }
 
     public Project getProject() {
-        return this.project;
+        return project;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public List<Product> getProduct() {
+        return MYproduct;
     }
+
+    @Override
+    public String toString() {
+        return "ProjectProduct{" +
+                "ProjectProductId=" + ProjectProductId +
+                ", project=" + project +
+                ", product=" + MYproduct +
+                '}';
+    }
+
+
 }
