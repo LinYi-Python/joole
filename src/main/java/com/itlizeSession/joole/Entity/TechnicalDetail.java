@@ -79,14 +79,6 @@ public class TechnicalDetail {
         this.technicalDetailNumber = technicalDetailNumber;
     }
 
-    public Integer getProductTypeId() {
-        return productTypeId;
-    }
-
-    public void setProductTypeId(Integer productTypeId) {
-        this.productTypeId = productTypeId;
-    }
-
     public Timestamp getCreateTime() {
         return createTime;
     }

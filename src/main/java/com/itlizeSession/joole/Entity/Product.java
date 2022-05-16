@@ -53,7 +53,7 @@ public class Product {
     private Timestamp updateTime;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "Sales_ID")
+    @JoinColumn(name = "Sales_ID_FK")
     private Sales sale;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
@@ -67,6 +67,10 @@ public class Product {
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "Technical_Details_ID_FK")
     private TechnicalDetail technicalDetail;
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Project_Product_FK")
+    private ProjectProduct projectProduct;
 
     public Product(Integer productTypeId, Integer technicalDetailId,
             Integer manufacturerDetailId, Integer modelYear, String brand,
@@ -154,6 +158,14 @@ public class Product {
 
     public void setTechnicalDetail(TechnicalDetail technicalDetail) {
         this.technicalDetail = technicalDetail;
+    }
+
+    public ProjectProduct getProjectProduct() {
+        return this.projectProduct;
+    }
+
+    public void setProjectProduct(ProjectProduct projectProduct) {
+        this.projectProduct = projectProduct;
     }
 
 }
