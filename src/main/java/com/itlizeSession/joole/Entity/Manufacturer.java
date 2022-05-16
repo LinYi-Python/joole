@@ -48,7 +48,7 @@ public class Manufacturer {
     @Column(name = "web_url", length = 20)
     private String webUrl;
 
-    @CreatedDate
+   
     @Column(name = "create_time", length = 20)
     private Timestamp createTime;
 

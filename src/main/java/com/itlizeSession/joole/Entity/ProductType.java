@@ -25,7 +25,7 @@ public class ProductType {
     @Column(name = "product_type_detail", length = 50)
     private String productTypeDetail;
 
-    @CreatedDate
+   
     @Column(name = "create_time", length = 50)
     private Timestamp createTime;
 

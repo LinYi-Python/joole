@@ -38,7 +38,7 @@ public class User {
     @Column(name = "profile_picture_url", length = 20)
     private String profilePictureUrl;
 
-    @CreatedDate
+
     @Column(name = "create_time", length = 20)
     private Timestamp createTime;
 

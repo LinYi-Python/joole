@@ -38,7 +38,6 @@ public class Sales {
     @Column(name = "product_id", length = 20)
     private Integer productId;
 
-    @CreatedDate
     @Column(name = "create_time", length = 20)
     private Timestamp createTime;
 

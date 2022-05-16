@@ -40,7 +40,7 @@ public class TechnicalDetail {
     // @Column(name = "techninal_detail_comment", length = 20)
     // private String techninalDetailComment;
 
-    @CreatedDate
+
     @Column(name = "create_time", length = 20)
     private Timestamp createTime;
 
