@@ -51,7 +51,27 @@ public class ProductTypeServiceImp implements ProductTypeService{
             return false;
         }
 
-        ///xxx
+//        try{
+//
+//        }catch (){
+//
+//        }
+
+            return true;
+    }
+
+    @Override
+    public void delete(ProductType productType) {
+
+    }
+
+    @Override
+    public ProductType get(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void update(ProductType productType) {
 
     }
 

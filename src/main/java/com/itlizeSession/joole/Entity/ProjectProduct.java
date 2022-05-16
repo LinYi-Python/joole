@@ -1,51 +1,77 @@
 package com.itlizeSession.joole.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
 
-/**
- * @ClassName ProjectProduct
- * @Description TODO
- * @Author Yi Lin
- * @Date 5/11/22 00:47
- * @Version 1.0
- **/
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity(name = "project_product")
 public class ProjectProduct {
-
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer ProjectProductId;
 
-    @Column(name = "project_id", length = 20)
-    private Integer projectId;
+//    @ManyToOne(targetEntity = Project.class, cascade = CascadeType.DETACH)
+//    private Project project;
+//
+//    @JsonIgnore
+//    @OneToMany(targetEntity = Product.class, cascade = CascadeType.DETACH, mappedBy = "projectProductId")
+//    private List<Product> MYproduct = new ArrayList<>();
 
-    @Column(name = "product_id", length = 20)
-    private Integer productId;
+    @CreatedDate
+    @Column(name = "create_time", length = 20)
+    private Timestamp createTime;
+
+    @ManyToOne(targetEntity = Product.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne(targetEntity = Project.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+
 
     public ProjectProduct() {
     }
 
-    public ProjectProduct(Integer projectId, Integer productId) {
-        this.projectId = projectId;
-        this.productId = productId;
+    public ProjectProduct(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Integer getProjectId() {
-        return projectId;
+    public Integer getProjectProductId() {
+        return ProjectProductId;
     }
 
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
+    public void setProjectProductId(Integer projectProductId) {
+        ProjectProductId = projectProductId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

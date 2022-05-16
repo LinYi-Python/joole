@@ -1,6 +1,9 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -12,7 +15,9 @@ import com.itlizeSession.joole.Entity.Manufacturer;
 import com.itlizeSession.joole.Entity.Sale;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName Product
@@ -44,7 +49,7 @@ public class Product {
 //    @Column(name = "product_type_id", length = 20)
 //    private Integer productTypeId;
 
-    @OneToOne(targetEntity = TechnicalDetail.class, cascade = CascadeType.DETACH)
+    @ManyToOne(targetEntity = TechnicalDetail.class, cascade = CascadeType.DETACH)
     @JoinColumn(name = "technical_detail_id")
     private TechnicalDetail technicalDetail;
 
@@ -77,6 +82,12 @@ public class Product {
 
     @Column(name = "update_time", length = 20)
     private Timestamp updateTime;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = ProjectProduct.class, cascade = CascadeType.REMOVE, mappedBy = "product")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<ProjectProduct> ProjectProducts = new ArrayList<>();
+
 
     @Override
     public String toString() {

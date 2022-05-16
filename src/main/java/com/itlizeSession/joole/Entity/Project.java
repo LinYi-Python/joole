@@ -1,12 +1,17 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @ClassName Project
@@ -21,26 +26,67 @@ public class Project {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "user_id", length = 20)
-    private Integer user_id;
+//    @Column(name = "user_id", length = 20)
+//    private Integer user_id;
 
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = ProjectProduct.class, cascade = CascadeType.REMOVE, mappedBy = "project")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<ProjectProduct> projectProduct = new HashSet<>();
 
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
 
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
 
     public Project() {
     }
 
-    public Project(Integer user_id, String createTime, String updateTime) {
-        this.user_id = user_id;
+    public Project( Integer projectId, User user, Timestamp createTime, Timestamp updateTime) {
+
+        this.id = projectId;
+        this.user = user;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
 
+
+
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public Collection<ProjectProduct> getProjectProduct() {
+        return projectProduct;
+    }
+
+    public void setProjectProduct(Collection<ProjectProduct> projectProduct) {
+        this.projectProduct = projectProduct;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public Integer getId() {
         return id;
@@ -50,27 +96,24 @@ public class Project {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setProjectProduct(List<ProjectProduct> projectProduct) {
+        this.projectProduct = projectProduct;
     }
 
-    public String getCreateTime() {
-        return createTime;
-    }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
 
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime;
+    @Override
+    public String toString() {
+        return "Project{" +
+                "ProjectId=" + id +
+                ", user=" + user +
+                ", projectProduct=" + projectProduct +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
     }
 }

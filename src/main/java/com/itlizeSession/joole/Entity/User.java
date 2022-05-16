@@ -1,12 +1,17 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @ClassName User
@@ -37,13 +42,25 @@ public class User {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
 
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
 
-    public User(String userName, String password, String name, String profilePictureUrl, String createTime, String updateTime) {
+    //problem!!!
+//    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "Project_id")
+//    private Project project;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = Project.class, cascade = CascadeType.REMOVE, mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<Project> projects = new HashSet<>();
+
+
+    public User(String userName, String password, String name,
+                String profilePictureUrl, Timestamp createTime, Timestamp updateTime) {
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -97,19 +114,19 @@ public class User {
         this.profilePictureUrl = profilePictureUrl;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }
