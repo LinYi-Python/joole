@@ -1,91 +1,99 @@
 package com.itlizeSession.joole.Entity;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import java.sql.Timestamp;
+import javax.persistence.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import java.util.*;
 
-/**
- * @ClassName Project
- * @Description TODO
- * @Author Yi Lin
- * @Date 5/11/22 00:15
- * @Version 1.0
- **/
+import static javax.persistence.CascadeType.ALL;
+
+
 @Entity(name = "project")
 public class Project {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer ProjectId;
 
-    @Column(name = "user_id", length = 20)
-    private Integer user_id;
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.DETACH)
+    private User user;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = ProjectProduct.class, cascade = CascadeType.REMOVE, mappedBy = "project")
+    //hashset
+    private List<ProjectProduct> projectProduct = new ArrayList<>();
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private Timestamp createTime;
+    private String createTime;
 
     @Column(name = "update_time", length = 20)
-    private Timestamp updateTime;
-
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_ID_FK")
-    private User user;
+    private String updateTime;
 
     public Project() {
     }
 
-    public Project(Integer user_id, Timestamp createTime, Timestamp updateTime) {
-        this.user_id = user_id;
+    public Project(Integer projectId, User user, List<ProjectProduct> projectProduct, String createTime, String updateTime) {
+        ProjectId = projectId;
+        this.user = user;
+        this.projectProduct = projectProduct;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
+    public Integer getProjectId() {
+        return ProjectId;
     }
 
     public User getUser() {
-        return this.user;
+        return user;
+    }
+
+    public List<ProjectProduct> getProjectProduct() {
+        return projectProduct;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setProjectId(Integer projectId) {
+        ProjectId = projectId;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setProjectProduct(List<ProjectProduct> projectProduct) {
+        this.projectProduct = projectProduct;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "ProjectId=" + ProjectId +
+                ", user=" + user +
+                ", projectProduct=" + projectProduct +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
     }
 }
