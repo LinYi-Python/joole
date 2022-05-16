@@ -1,0 +1,13 @@
+package com.itlizeSession.joole.Service;
+
+import com.itlizeSession.joole.Entity.Project;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface ProjectService {
+    public Project findOneById(Integer Id);
+    List<Project> findAll();
+    public Project save(Project project);
+}
