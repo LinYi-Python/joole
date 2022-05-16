@@ -1,12 +1,14 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName Sale
@@ -34,16 +36,21 @@ public class Sale {
     @Column(name = "web_url", length = 20)
     private String webUrl;
 
-    @Column(name = "product_id", length = 20)
-    private Integer productId;
+//    @Column(name = "product_id", length = 20)
+//    private Integer productId;
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-    @UpdateTimestamp
+
     @Column(name = "update_time", length = 20)
     private String updateTime;
+
+    @JsonIgnore
+    @OneToOne(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "sale")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Product products = new Product();
 
     public Sale() {
     }
@@ -55,7 +62,7 @@ public class Sale {
         this.email = email;
         this.phone = phone;
         this.webUrl = webUrl;
-        this.productId = productId;
+//        this.productId = productId;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -100,13 +107,13 @@ public class Sale {
         this.id = id;
     }
 
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+//    public Integer getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(Integer productId) {
+//        this.productId = productId;
+//    }
 
     public String getCreateTime() {
         return createTime;

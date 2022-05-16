@@ -1,12 +1,17 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import com.itlizeSession.joole.Entity.ProductType;
+import com.itlizeSession.joole.Entity.TechnicalDetail;
+import com.itlizeSession.joole.Entity.Manufacturer;
+import com.itlizeSession.joole.Entity.Sale;
+
+import java.util.Date;
 
 /**
  * @ClassName Product
@@ -25,37 +30,61 @@ public class Product {
     @Column(name = "name", length = 20)
     private String name;
 
-    @Column(name = "product_type_id", length = 20)
-    private Integer productTypeId;
+    @ManyToOne(targetEntity = ProductType.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "product_type_id")
+    private ProductType productType;
 
-    @Column(name = "technical_detail_id", length = 20)
-    private Integer technicalDetailId;
 
-    @Column(name = "manufacturer_detail_id", length = 20)
-    private Integer manufacturerDetailId;
+//    @ManyToone(tragetE = Story)
+//    @Joins name = story_id
+//    private Story story
+
+
+//    @Column(name = "product_type_id", length = 20)
+//    private Integer productTypeId;
+
+    @ManyToOne(targetEntity = TechnicalDetail.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "technical_detail_id")
+    private TechnicalDetail technicalDetail;
+
+
+//    @Column(name = "technical_detail_id", length = 20)
+//    private Integer technicalDetailId;
+
+    @ManyToOne(targetEntity = Manufacturer.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "manufacturer_detail_id")
+    private Manufacturer manufacturerDetailId;
+
+//    @Column(name = "manufacturer_detail_id", length = 20)
+//    private Integer manufacturerDetailId;
 
     @Column(name = "model_year", length = 20)
     private Integer modelYear;
+
+
+    @OneToOne(targetEntity = Sale.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "sale_id")
+    private Sale sale;
 
     @Column(name = "brand", length = 20)
     private String brand;
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Date createTime;
 
-    @UpdateTimestamp
+
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Date updateTime;
 
     public Product() {
     }
 
-    public Product(Integer productTypeId, Integer technicalDetailId,
-                   Integer manufacturerDetailId, Integer modelYear, String brand,
-                   String createTime, String updateTime) {
-        this.productTypeId = productTypeId;
-        this.technicalDetailId = technicalDetailId;
+    public Product(Integer id, String name, ProductType productType, TechnicalDetail technicalDetail, Manufacturer manufacturerDetailId, Integer modelYear, String brand, Date createTime, Date updateTime) {
+        this.id = id;
+        this.name = name;
+        this.productType = productType;
+        this.technicalDetail = technicalDetail;
         this.manufacturerDetailId = manufacturerDetailId;
         this.modelYear = modelYear;
         this.brand = brand;
@@ -63,27 +92,44 @@ public class Product {
         this.updateTime = updateTime;
     }
 
-    public Integer getProductTypeId() {
-        return productTypeId;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductTypeId(Integer productTypeId) {
-        this.productTypeId = productTypeId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getTechnicalDetailId() {
-        return technicalDetailId;
+    public String getName() {
+        return name;
     }
 
-    public void setTechnicalDetailId(Integer technicalDetailId) {
-        this.technicalDetailId = technicalDetailId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getManufacturerDetailId() {
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public TechnicalDetail getTechnicalDetail() {
+        return technicalDetail;
+    }
+
+    public void setTechnicalDetail(TechnicalDetail technicalDetail) {
+        this.technicalDetail = technicalDetail;
+    }
+
+    public Manufacturer getManufacturerDetailId() {
         return manufacturerDetailId;
     }
 
-    public void setManufacturerDetailId(Integer manufacturerDetailId) {
+    public void setManufacturerDetailId(Manufacturer manufacturerDetailId) {
         this.manufacturerDetailId = manufacturerDetailId;
     }
 
@@ -103,20 +149,19 @@ public class Product {
         this.brand = brand;
     }
 
-
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 }

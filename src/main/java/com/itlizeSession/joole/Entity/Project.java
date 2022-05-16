@@ -24,11 +24,11 @@ public class Project {
     @Column(name = "user_id", length = 20)
     private Integer user_id;
 
-    @CreatedDate
+
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-    @UpdateTimestamp
+
     @Column(name = "update_time", length = 20)
     private String updateTime;
 

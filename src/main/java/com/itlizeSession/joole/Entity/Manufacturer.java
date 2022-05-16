@@ -1,12 +1,15 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.xml.crypto.Data;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * @ClassName Manufacturer
@@ -40,13 +43,19 @@ public class Manufacturer {
     @Column(name = "web_url", length = 20)
     private String webUrl;
 
-    @CreatedDate
-    @Column(name = "create_time", length = 20)
-    private String createTime;
 
-    @UpdateTimestamp
+    @Column(name = "create_time", length = 20)
+    private Date createTime;
+
+
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Date updateTime;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "manufacturerDetailId")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<Product> products = new HashSet<>();
+
 
     public Manufacturer() {
     }
@@ -54,7 +63,7 @@ public class Manufacturer {
     public Manufacturer(String userName, String password,
                         String department, String phone,
                         String email, String webUrl,
-                        String createTime, String updateTime) {
+                        Date createTime, Date updateTime) {
         this.userName = userName;
         this.password = password;
         this.department = department;
@@ -113,19 +122,19 @@ public class Manufacturer {
         this.webUrl = webUrl;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 }

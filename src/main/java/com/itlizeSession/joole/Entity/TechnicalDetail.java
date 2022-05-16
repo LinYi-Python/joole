@@ -1,12 +1,17 @@
 package com.itlizeSession.joole.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import com.itlizeSession.joole.Entity.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName ProductDetail
@@ -38,9 +43,14 @@ public class TechnicalDetail {
     @Column(name = "create_time", length = 20)
     private String createTime;
 
-    @UpdateTimestamp
+
     @Column(name = "update_time", length = 20)
     private String updateTime;
+
+    @JsonIgnore
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "technicalDetail")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Product> products = new ArrayList<>();
 
     public TechnicalDetail() {
     }
