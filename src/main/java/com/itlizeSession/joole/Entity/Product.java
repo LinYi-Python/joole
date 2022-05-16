@@ -1,12 +1,18 @@
 package com.itlizeSession.joole.Entity;
 
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
+import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+//testing github
 
 /**
  * @ClassName Product
@@ -22,69 +28,68 @@ public class Product {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "name", length = 20)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "product_type_id", length = 20)
-    private Integer productTypeId;
+    // @Column(name = "product_type_id")
+    // private Integer productTypeId;
 
-    @Column(name = "technical_detail_id", length = 20)
-    private Integer technicalDetailId;
+    // @Column(name = "technical_detail_id")
+    // private Integer technicalDetailId;
 
-    @Column(name = "manufacturer_detail_id", length = 20)
-    private Integer manufacturerDetailId;
+    // @Column(name = "manufacturer_detail_id")
+    // private Integer manufacturerDetailId;
 
-    @Column(name = "model_year", length = 20)
+    @Column(name = "model_year")
     private Integer modelYear;
 
-    @Column(name = "brand", length = 20)
+    @Column(name = "brand")
     private String brand;
 
-    @CreatedDate
-    @Column(name = "create_time", length = 20)
-    private String createTime;
+    @Column(name = "create_time")
+    private Timestamp createTime;
 
-    @UpdateTimestamp
-    @Column(name = "update_time", length = 20)
-    private String updateTime;
+    @Column(name = "update_time")
+    private Timestamp updateTime;
 
-    public Product() {
-    }
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Sales_ID")
+    private Sales sale;
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Manufacturer_ID_FK")
+    private Manufacturer manufacturer;
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Product_Type_ID_FK")
+    private ProductType productType;
+
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Technical_Details_ID_FK")
+    private TechnicalDetail technicalDetail;
 
     public Product(Integer productTypeId, Integer technicalDetailId,
-                   Integer manufacturerDetailId, Integer modelYear, String brand,
-                   String createTime, String updateTime) {
-        this.productTypeId = productTypeId;
-        this.technicalDetailId = technicalDetailId;
-        this.manufacturerDetailId = manufacturerDetailId;
+            Integer manufacturerDetailId, Integer modelYear, String brand,
+            Timestamp createTime, Timestamp updateTime) {
+
+        // this.productTypeId = productTypeId;
+        // this.technicalDetailId = technicalDetailId;
+        // this.manufacturerDetailId = manufacturerDetailId;
         this.modelYear = modelYear;
         this.brand = brand;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
 
-    public Integer getProductTypeId() {
-        return productTypeId;
+    public Product() {
     }
 
-    public void setProductTypeId(Integer productTypeId) {
-        this.productTypeId = productTypeId;
+    public String getName() {
+        return this.name;
     }
 
-    public Integer getTechnicalDetailId() {
-        return technicalDetailId;
-    }
-
-    public void setTechnicalDetailId(Integer technicalDetailId) {
-        this.technicalDetailId = technicalDetailId;
-    }
-
-    public Integer getManufacturerDetailId() {
-        return manufacturerDetailId;
-    }
-
-    public void setManufacturerDetailId(Integer manufacturerDetailId) {
-        this.manufacturerDetailId = manufacturerDetailId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getModelYear() {
@@ -103,20 +108,52 @@ public class Product {
         this.brand = brand;
     }
 
-
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+
+    public Sales getSales() {
+        return this.sale;
+    }
+
+    public void setSales(Sales sales) {
+        this.sale = sales;
+    }
+
+    public Manufacturer getManufacturer() {
+        return this.manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public ProductType getProductType() {
+        return this.productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public TechnicalDetail getTechnicalDetail() {
+        return this.technicalDetail;
+    }
+
+    public void setTechnicalDetail(TechnicalDetail technicalDetail) {
+        this.technicalDetail = technicalDetail;
+    }
+
 }

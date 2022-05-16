@@ -1,9 +1,10 @@
 package com.itlizeSession.joole.Entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 
 /**
  * Created by yang shu
@@ -16,15 +17,13 @@ public class Luckymoney {
 	@GeneratedValue
 	private Integer id;
 
-
-
 	private BigDecimal money;
 
 	/**
 	 * creat producer
 	 */
 
-	//@Value("Jack")
+	// @Value("Jack")
 	private String producer;
 
 	/**
@@ -32,7 +31,6 @@ public class Luckymoney {
 	 */
 
 	private String consumer;
-
 
 	public Luckymoney() {
 	}

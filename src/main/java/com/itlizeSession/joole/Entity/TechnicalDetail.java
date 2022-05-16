@@ -1,12 +1,18 @@
 package com.itlizeSession.joole.Entity;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.sql.Timestamp;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * @ClassName ProductDetail
@@ -22,8 +28,8 @@ public class TechnicalDetail {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "product_type_id", length = 20)
-    private Integer productTypeId;
+    // @Column(name = "product_type_id", length = 20)
+    // private Integer productTypeId;
 
     @Column(name = "technical_detail_name", length = 20)
     private String technicalDetailName;
@@ -31,27 +37,28 @@ public class TechnicalDetail {
     @Column(name = "technical_detail_number", length = 20)
     private Integer technicalDetailNumber;
 
-//    @Column(name = "techninal_detail_comment", length = 20)
-//    private String techninalDetailComment;
+    // @Column(name = "techninal_detail_comment", length = 20)
+    // private String techninalDetailComment;
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
-    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
+
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ProductType_FK")
+    private ProductType productType;
 
     public TechnicalDetail() {
     }
 
     public TechnicalDetail(String technicalDetailName, Integer technicalDetailNumber,
-                            Integer productTypeId,
-                           String createTime, String updateTime) {
+            Integer productTypeId,
+            Timestamp createTime, Timestamp updateTime) {
         this.technicalDetailName = technicalDetailName;
         this.technicalDetailNumber = technicalDetailNumber;
-
-        this.productTypeId = productTypeId;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -72,7 +79,6 @@ public class TechnicalDetail {
         this.technicalDetailNumber = technicalDetailNumber;
     }
 
-
     public Integer getProductTypeId() {
         return productTypeId;
     }
@@ -81,19 +87,27 @@ public class TechnicalDetail {
         this.productTypeId = productTypeId;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public ProductType getProductType() {
+        return this.productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 }

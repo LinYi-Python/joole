@@ -2,6 +2,8 @@ package com.itlizeSession.joole.Entity;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,12 +27,12 @@ public class ProductType {
 
     @CreatedDate
     @Column(name = "create_time", length = 50)
-    private String createTime;
+    private Timestamp createTime;
 
     public ProductType() {
     }
 
-    public ProductType(String productTypeDetail, String createTime) {
+    public ProductType(String productTypeDetail, Timestamp createTime) {
         this.productTypeDetail = productTypeDetail;
         this.createTime = createTime;
     }
@@ -43,11 +45,11 @@ public class ProductType {
         this.productTypeDetail = productTypeDetail;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 }

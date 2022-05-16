@@ -1,7 +1,8 @@
 package com.itlizeSession.joole.Entity;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,19 +43,18 @@ public class Manufacturer {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
-    @UpdateTimestamp
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
 
     public Manufacturer() {
     }
 
     public Manufacturer(String userName, String password,
-                        String department, String phone,
-                        String email, String webUrl,
-                        String createTime, String updateTime) {
+            String department, String phone,
+            String email, String webUrl,
+            Timestamp createTime, Timestamp updateTime) {
         this.userName = userName;
         this.password = password;
         this.department = department;
@@ -113,19 +113,19 @@ public class Manufacturer {
         this.webUrl = webUrl;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

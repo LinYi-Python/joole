@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "limit",
+      "type": "com.itlizeSession.joole.Config.LimitConfig",
+      "sourceType": "com.itlizeSession.joole.Config.LimitConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "limit.description",
+      "type": "java.lang.String",
+      "sourceType": "com.itlizeSession.joole.Config.LimitConfig"
+    },
+    {
+      "name": "limit.max-money",
+      "type": "java.math.BigDecimal",
+      "sourceType": "com.itlizeSession.joole.Config.LimitConfig"
+    },
+    {
+      "name": "limit.min-money",
+      "type": "java.math.BigDecimal",
+      "sourceType": "com.itlizeSession.joole.Config.LimitConfig"
+    }
+  ],
+  "hints": []
+}
