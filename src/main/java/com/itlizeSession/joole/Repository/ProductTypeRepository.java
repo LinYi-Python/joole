@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Version 1.0
  **/
 public interface ProductTypeRepository extends JpaRepository<ProductType, Integer> {
-
+    public ProductType getProductTypeByProductTypeDetail(String name);
 }

@@ -11,6 +11,7 @@ import com.itlizeSession.joole.Entity.TechnicalDetail;
 import com.itlizeSession.joole.Entity.Manufacturer;
 import com.itlizeSession.joole.Entity.Sale;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -43,7 +44,7 @@ public class Product {
 //    @Column(name = "product_type_id", length = 20)
 //    private Integer productTypeId;
 
-    @ManyToOne(targetEntity = TechnicalDetail.class, cascade = CascadeType.DETACH)
+    @OneToOne(targetEntity = TechnicalDetail.class, cascade = CascadeType.DETACH)
     @JoinColumn(name = "technical_detail_id")
     private TechnicalDetail technicalDetail;
 
@@ -62,7 +63,7 @@ public class Product {
     private Integer modelYear;
 
 
-    @OneToOne(targetEntity = Sale.class, cascade = CascadeType.DETACH)
+    @ManyToOne(targetEntity = Sale.class, cascade = CascadeType.DETACH)
     @JoinColumn(name = "sale_id")
     private Sale sale;
 
@@ -71,16 +72,47 @@ public class Product {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private Date createTime;
+    private Timestamp createTime;
 
 
     @Column(name = "update_time", length = 20)
-    private Date updateTime;
+    private Timestamp updateTime;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", productType=" + productType +
+                ", technicalDetail=" + technicalDetail +
+                ", manufacturerDetailId=" + manufacturerDetailId +
+                ", modelYear=" + modelYear +
+                ", sale=" + sale +
+                ", brand='" + brand + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public String toJson() {
+        return "{" +
+                "\"id\" : \"" + id +
+                "\" , \"name\": \"" + name +
+                "\" , \"productType\": \"" + productType +
+                "\" , \"technicalDetail\": \"" + technicalDetail +
+                "\" , \"manufacturerDetailId\": \"" + manufacturerDetailId +
+                "\" , \"modelYear\": \"" + modelYear +
+                "\" , \"sale\": \"" + sale +
+                "\" , \"brand\": \"" + brand +
+                "\" , \"createTime\": \"" + createTime +
+                "\" , \"updateTime\": \"" + updateTime +
+                "\"}";
+    }
 
     public Product() {
     }
 
-    public Product(Integer id, String name, ProductType productType, TechnicalDetail technicalDetail, Manufacturer manufacturerDetailId, Integer modelYear, String brand, Date createTime, Date updateTime) {
+    public Product(Integer id, String name, ProductType productType, TechnicalDetail technicalDetail, Manufacturer manufacturerDetailId, Integer modelYear, String brand, Timestamp createTime, Timestamp updateTime) {
         this.id = id;
         this.name = name;
         this.productType = productType;
@@ -92,6 +124,13 @@ public class Product {
         this.updateTime = updateTime;
     }
 
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
 
     public Integer getId() {
         return id;
@@ -149,19 +188,19 @@ public class Product {
         this.brand = brand;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

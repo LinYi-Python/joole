@@ -33,5 +33,26 @@ public class ProductTypeServiceImp implements ProductTypeService{
         return productTypeRepository.save(productType);
     }
 
+    @Override
+    public ProductType findByName(String name){
+        return productTypeRepository.getProductTypeByProductTypeDetail(name);
+    }
+
+    @Override
+    public boolean create(ProductType productType){
+        if(productType == null) {
+            System.out.println("null input");
+            return false;
+        }
+
+        ProductType target = findOneById(productType.getId());
+        if(target != null) {
+            System.out.println("ProductType already exists");
+            return false;
+        }
+
+        ///xxx
+
+    }
 
 }

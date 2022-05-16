@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 import com.itlizeSession.joole.Entity.Product;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,16 @@ public class TechnicalDetail {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "product_type_id", length = 20)
-    private Integer productTypeId;
+//    @Column(name = "product_type_id", length = 20)
+//    private Integer productTypeId;
+
+    @ManyToOne(targetEntity = ProductType.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "product_type_id")
+    private ProductType productType;
 
     @Column(name = "technical_detail_name", length = 20)
     private String technicalDetailName;
+
 
     @Column(name = "technical_detail_number", length = 20)
     private Integer technicalDetailNumber;
@@ -41,29 +47,75 @@ public class TechnicalDetail {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
 
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
 
     @JsonIgnore
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "technicalDetail")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Product> products = new ArrayList<>();
 
+    public List<Product> getProducts(){
+        return products;
+    }
+
+    public void addProducts(Product product) {
+        if(products.contains(product)){
+            return;
+        }
+        products.add(product);
+        product.setTechnicalDetail(this);
+    }
+
+    public void removeProducts(Product product){
+        if(!products.contains(product)){
+            return;
+        }
+        products.remove(product);
+        product.setTechnicalDetail(null);
+    }
+
+    @Override
+    public String toString(){
+        return "TechnicalDetail{" + "id=" + id + "}";
+    }
+
+    public String toJson(List<String> entries){
+        String result = null;
+        List<String> colsContent = new ArrayList<>();
+        for(String entry: entries) {
+            colsContent.add(entry);
+        }
+        result = "{" + String.join("," , colsContent) + "}";
+        return String.format("{\"TechnicalDetailId\" : \"%d\", \"content\" : \"%s\"}" , getId(), result);
+
+    }
+
     public TechnicalDetail() {
     }
 
     public TechnicalDetail(String technicalDetailName, Integer technicalDetailNumber,
-                            Integer productTypeId,
-                           String createTime, String updateTime) {
+                           Timestamp createTime, Timestamp updateTime) {
         this.technicalDetailName = technicalDetailName;
         this.technicalDetailNumber = technicalDetailNumber;
 
-        this.productTypeId = productTypeId;
         this.createTime = createTime;
         this.updateTime = updateTime;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getTechnicalDetailName() {
@@ -83,27 +135,27 @@ public class TechnicalDetail {
     }
 
 
-    public Integer getProductTypeId() {
-        return productTypeId;
+    public ProductType getProductType() {
+        return productType;
     }
 
-    public void setProductTypeId(Integer productTypeId) {
-        this.productTypeId = productTypeId;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

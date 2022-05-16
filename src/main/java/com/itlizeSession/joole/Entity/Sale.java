@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,23 +42,59 @@ public class Sale {
 
     @CreatedDate
     @Column(name = "create_time", length = 20)
-    private String createTime;
+    private Timestamp createTime;
 
 
     @Column(name = "update_time", length = 20)
-    private String updateTime;
+    private Timestamp updateTime;
 
     @JsonIgnore
-    @OneToOne(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "sale")
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "sale")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Product products = new Product();
+    private List<Product> products = new ArrayList<>();
+
+    public List<Product> getProducts(){
+        return products;
+    }
+
+    public void addProducts(Product product) {
+        if(products.contains(product)){
+            return;
+        }
+        products.add(product);
+        product.setSale(this);
+    }
+
+    public void removeProducts(Product product){
+        if(!products.contains(product)){
+            return;
+        }
+        products.remove(product);
+        product.setSale(null);
+    }
+
+    @Override
+    public String toString(){
+        return "Sale{" + "id=" + id + "}";
+    }
+
+    public String toJson(List<String> entries){
+        String result = null;
+        List<String> colsContent = new ArrayList<>();
+        for(String entry: entries) {
+            colsContent.add(entry);
+        }
+        result = "{" + String.join("," , colsContent) + "}";
+        return String.format("{\"SaleId\" : \"%d\", \"content\" : \"%s\"}" , getId(), result);
+
+    }
 
     public Sale() {
     }
 
     public Sale(String name, String email, String phone,
-                String webUrl, Integer productId,
-                String createTime, String updateTime) {
+                String webUrl,
+                Timestamp createTime, Timestamp updateTime) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -115,19 +152,19 @@ public class Sale {
 //        this.productId = productId;
 //    }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

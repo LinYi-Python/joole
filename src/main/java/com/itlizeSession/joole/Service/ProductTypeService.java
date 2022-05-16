@@ -2,6 +2,7 @@ package com.itlizeSession.joole.Service;
 
 import com.itlizeSession.joole.Entity.Product;
 import com.itlizeSession.joole.Entity.ProductType;
+import com.itlizeSession.joole.Entity.TechnicalDetail;
 
 import java.util.List;
 
@@ -19,4 +20,16 @@ public interface ProductTypeService {
     public List<ProductType> findAll();
 
     public ProductType save(ProductType productType);
+
+    public ProductType findByName(String name);
+
+    public boolean create(ProductType productType);
+
+    public void delete(ProductType productType);
+
+    public ProductType get(Integer id);
+
+    public void update(ProductType productType);
+
+
 }

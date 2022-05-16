@@ -19,4 +19,6 @@ public interface TechnicalDetailService {
 
     public TechnicalDetail save(TechnicalDetail technicalDetail);
 
+    public List<TechnicalDetail> getTechnicalDetailByName(String name);
+
 }

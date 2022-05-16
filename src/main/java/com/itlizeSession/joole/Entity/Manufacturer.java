@@ -45,16 +45,53 @@ public class Manufacturer {
 
 
     @Column(name = "create_time", length = 20)
-    private Date createTime;
+    private Timestamp createTime;
 
 
     @Column(name = "update_time", length = 20)
-    private Date updateTime;
+    private Timestamp updateTime;
 
     @JsonIgnore
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.REMOVE, mappedBy = "manufacturerDetailId")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Collection<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
+
+
+    public List<Product> getProducts(){
+        return products;
+    }
+
+    public void addProducts(Product product) {
+        if(products.contains(product)){
+            return;
+        }
+        products.add(product);
+        product.setManufacturerDetailId(this);
+    }
+
+    public void removeProducts(Product product){
+        if(!products.contains(product)){
+            return;
+        }
+        products.remove(product);
+        product.setManufacturerDetailId(null);
+    }
+
+    @Override
+    public String toString(){
+        return "Manufacturer{" + "id=" + id + "}";
+    }
+
+    public String toJson(List<String> entries){
+        String result = null;
+        List<String> colsContent = new ArrayList<>();
+        for(String entry: entries) {
+            colsContent.add(entry);
+        }
+        result = "{" + String.join("," , colsContent) + "}";
+        return String.format("{\"ManufacturerId\" : \"%d\", \"content\" : \"%s\"}" , getId(), result);
+
+    }
 
 
     public Manufacturer() {
@@ -63,7 +100,7 @@ public class Manufacturer {
     public Manufacturer(String userName, String password,
                         String department, String phone,
                         String email, String webUrl,
-                        Date createTime, Date updateTime) {
+                        Timestamp createTime, Timestamp updateTime) {
         this.userName = userName;
         this.password = password;
         this.department = department;
@@ -72,6 +109,18 @@ public class Manufacturer {
         this.webUrl = webUrl;
         this.createTime = createTime;
         this.updateTime = updateTime;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getUserName() {
@@ -122,19 +171,19 @@ public class Manufacturer {
         this.webUrl = webUrl;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }
