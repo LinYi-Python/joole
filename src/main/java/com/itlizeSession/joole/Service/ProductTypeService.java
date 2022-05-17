@@ -25,11 +25,11 @@ public interface ProductTypeService {
 
     public boolean create(ProductType productType);
 
-    public void delete(ProductType productType);
+    public boolean delete(ProductType productType);
 
     public ProductType get(Integer id);
 
-    public void update(ProductType productType);
+    public boolean update(ProductType productType);
 
 
 }

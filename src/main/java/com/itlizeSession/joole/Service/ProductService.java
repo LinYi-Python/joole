@@ -34,7 +34,7 @@ public interface ProductService {
 
     public Product get(Integer id);
 
-    public void deleteAll();
+    public boolean deleteAll();
 
     public List<Product> findProducesByProductType(String name);
 

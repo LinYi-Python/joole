@@ -150,8 +150,15 @@ public class ProductServiceImp implements ProductService{
 
 
     @Override
-    public void deleteAll(){
-        productRepository.deleteAll();
+    public boolean deleteAll(){
+        try{
+            productRepository.deleteAll();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override

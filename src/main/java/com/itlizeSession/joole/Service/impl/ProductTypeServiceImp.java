@@ -51,28 +51,59 @@ public class ProductTypeServiceImp implements ProductTypeService{
             return false;
         }
 
-//        try{
-//
-//        }catch (){
-//
-//        }
+        try{
+            productTypeRepository.save(productType);
+
+        }catch (Exception e){
+            System.out.println("something is wrong" + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
 
             return true;
     }
 
     @Override
-    public void delete(ProductType productType) {
-
+    public boolean delete(ProductType productType) {
+        ProductType target = findOneById(productType.getId());
+        if(target == null) {
+            System.out.println("there is nothing for us to delete");
+            return false;
+        }
+        try{
+            productTypeRepository.delete(target);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     public ProductType get(Integer id) {
-        return null;
+        ProductType target = findOneById(id);
+        if(target == null) {
+            System.out.println("there is nothing for us to delete");
+            return null;
+        }
+            return target;
+
     }
 
     @Override
-    public void update(ProductType productType) {
-
+    public boolean update(ProductType productType) {
+        ProductType target = findOneById(productType.getId());
+        if(target == null) {
+            System.out.println("there is nothing for us to delete");
+            return false;
+        }
+        try{
+            productTypeRepository.save(productType);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 }
