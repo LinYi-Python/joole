@@ -18,6 +18,6 @@ public interface ProjectService {
 
     public boolean update(Project project);
 
-    public boolean deleteAll();
+    public void deleteAll();
     public Project get(Integer id);
 }

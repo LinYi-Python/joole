@@ -102,15 +102,8 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public boolean deleteAll(){
-        try{
-            projectRepository.deleteAll();
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-
+    public void deleteAll(){
+        projectRepository.deleteAll();
     }
 
     @Override
