@@ -28,6 +28,7 @@ import java.util.List;
  **/
 //@RunWith(SpringJUnit4ClassRunner.class)
 @RunWith(SpringRunner.class)
+@SpringBootTest
 class ProductServiceImpTest {
 
     @Autowired
@@ -43,23 +44,23 @@ class ProductServiceImpTest {
 
     @Test
     void findOneById() {
-        assertThrows(NullPointerException.class,
-                () -> {
+//        assertThrows(NullPointerException.class,
+//                () -> {
+//                    int id = 666;
+//                    product.setId(id);
+//                    productService.save(product);
+//                    Product expected = product;
+//                    Product actual = productService.findOneById(id);
+//
+//                    Assert.assertEquals(expected, actual);
+//                });
                     int id = 1;
                     product.setId(id);
-
+                    productService.save(product);
                     Product expected = product;
                     Product actual = productService.findOneById(id);
 
                     Assert.assertEquals(expected, actual);
-                });
-//        int id = 1;
-//        product.setId(id);
-//
-//        Product expected = product;
-//        Product actual = productService.findOneById(id);
-//
-//        Assert.assertEquals(expected, actual);
 
     }
 

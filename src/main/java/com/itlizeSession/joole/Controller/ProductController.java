@@ -45,12 +45,12 @@ public class ProductController {
         return productTypeService.findAll();
     }
 
-//    /**
-//     *
-//     * @return
-//     */
-//    public List<Product> getAllProductFromProductType(){
-//
+    /**
+     *
+     * @return
+     */
+//    public List<Product> getAllProductFromProductType(@RequestParam("ProductType") String productTypeName){
+//        return
 //    }
 
 
