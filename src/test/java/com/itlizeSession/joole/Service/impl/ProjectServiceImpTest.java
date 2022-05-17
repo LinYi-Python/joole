@@ -2,12 +2,18 @@ package com.itlizeSession.joole.Service.impl;
 
 import com.itlizeSession.joole.Entity.Product;
 import com.itlizeSession.joole.Entity.ProductType;
+import com.itlizeSession.joole.Entity.Project;
+import com.itlizeSession.joole.Entity.User;
+import com.itlizeSession.joole.Service.ProjectService;
+import com.itlizeSession.joole.Service.UserService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,130 +26,67 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Version 1.0
  **/
 @RunWith(SpringRunner.class)
-class ProductTypeServiceImpTest {
+@SpringBootTest
+class ProjectServiceImpTest {
 
 
     @Autowired
-    private ProductTypeServiceImp productTypeService;
+    private ProjectService projectService;
+
+    @Autowired
+    private UserService userService;
+
 
     private ProductType productType = new ProductType();
 
     @Test
     void findOneById() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    int id = 1;
-                    productType.setId(id);
-                    ProductType expected = productType;
-
-                    ProductType actual = productTypeService.findOneById(id);
-
-                    Assert.assertEquals(expected, actual);
-                });
+        int id = 1;
+        Project project = new Project();
+        project.setId(1);
+        Project actual = projectService.findOneById(id);
+        Assert.assertEquals(project, actual);
     }
 
     @Test
     void findAll() {
-        assertThrows(NullPointerException.class,
-                () -> {
-
-                    List<ProductType> expected = new ArrayList<>();
-                    //expected.add(productType);
-
-                    List<ProductType> actual = productTypeService.findAll();
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        Collection<Project> actual = projectService.findAll();
+        Assert.assertTrue(actual != null);
     }
 
     @Test
     void save() {
-        assertThrows(NullPointerException.class,
-                () -> {
-
-                    ProductType expected = productType;
-
-                    ProductType actual = productTypeService.save(productType);
-
-                    Assert.assertEquals(expected, actual);
-
-                });
-    }
-
-    @Test
-    void findByName() {
-        assertThrows(NullPointerException.class,
-                () -> {
-
-
-                    String description = "detail";
-                    productType.setProductTypeDetail(description);
-                    productTypeService.save(productType);
-
-                    ProductType expected = productType;
-
-                    ProductType actual = productTypeService.findByName(description);
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        Project project = new Project();
+        Project actual = projectService.save(project);
+        Assert.assertEquals(project, actual);
     }
 
     @Test
     void create() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    boolean expected = true;
-
-                    ProductType productType = new ProductType();
-                    boolean actual = productTypeService.create(productType);
-
-                    Assert.assertEquals(expected, actual);
-                });
-    }
-
-    @Test
-    void delete() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    boolean expected = true;
-
-                    ProductType deleteTest = new ProductType();
-                    productTypeService.save(deleteTest);
-                    boolean actual = productTypeService.delete(deleteTest);
-
-                    Assert.assertEquals(expected, actual);
-                });
-    }
-
-    @Test
-    void get() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    int id = 1;
-                    ProductType expected = new ProductType();
-                    expected.setId(id);
-
-                    ProductType actual = productTypeService.get(id);
-
-                    Assert.assertEquals(expected, actual);
-                });
+        Project toAdd = new Project();
+        User user = userService.findUserById(0);
+        toAdd.setId(0);
+        boolean isSuccessful = projectService.create(toAdd, user);
+        Assert.assertTrue(isSuccessful);
     }
 
     @Test
     void update() {
-        assertThrows(NullPointerException.class,
-                () -> {
-
-                    boolean expected = true;
-
-                    ProductType productType = new ProductType();
-
-                    boolean actual = productTypeService.update(productType);
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        Timestamp updateTime = new Timestamp(System.currentTimeMillis());
+        User user = new User();
+        Project project = new Project(2, user, createTime, updateTime);
+        boolean result = projectService.update(project);
+        Assert.assertTrue(result);
     }
+
+
+    @Test
+    void delete() {
+        Project toDelete = projectService.get(1);
+        System.out.println("deleting" + toDelete.getId());
+        boolean isSuccessful = projectService.delete(toDelete);
+        Assert.assertTrue(isSuccessful);
+    }
+
 }
