@@ -17,7 +17,7 @@ public interface UserService {
     public boolean updateUser(User user);
 
     //Return System.out.println saying the user was logged out successfully
-    public boolean UserLogout();
+    public boolean userLogout();
 
     public boolean addProject(Project project, User user);
 }

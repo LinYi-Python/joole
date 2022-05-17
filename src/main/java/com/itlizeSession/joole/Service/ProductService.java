@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.itlizeSession.joole.Entity.*;
 
+import javax.persistence.Id;
 import java.util.List;
 
 /**
@@ -37,6 +38,12 @@ public interface ProductService {
     public boolean deleteAll();
 
     public List<Product> findProducesByProductType(String name);
+
+//    public List<TechnicalDetail> findProductsTechnicalDetailBypProductId(Integer id);
+//
+//    public Manufacturer findManufacturerByProductId(Integer id);
+//
+//    public Sale findSaleByProductId(Integer id);
 
     public List<Product> findProductsByProductTypeAndTechnicalDetail(String name, TechnicalDetail technicalDetail);
 

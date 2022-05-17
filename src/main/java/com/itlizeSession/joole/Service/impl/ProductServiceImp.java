@@ -63,11 +63,11 @@ public class ProductServiceImp implements ProductService{
             System.out.println("null input");
             return false;
         }
-        Product target = findOneById(product.getId());
-        if(target != null) {
-            System.out.println("Product already exists");
-            return false;
-        }
+//        Product target = findOneById(product.getId());
+//        if(target != null) {
+//            System.out.println("Product already exists");
+//            return false;
+//        }
 
         try{
             productRepository.save(product);
@@ -187,5 +187,7 @@ public class ProductServiceImp implements ProductService{
         return productRepository.findProductsByProductTypeAndTechnicalDetailAndModelYearAndBrand(productType,
                 technicalDetail, modelYear, brand);
     }
+    
+    
 
 }

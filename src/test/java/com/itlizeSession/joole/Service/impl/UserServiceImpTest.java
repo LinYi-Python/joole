@@ -1,5 +1,7 @@
 package com.itlizeSession.joole.Service.impl;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.itlizeSession.joole.Entity.Product;
 import com.itlizeSession.joole.Entity.User;
 
 import org.junit.Assert;
@@ -28,19 +30,13 @@ class UserServiceImpTest {
 
     private User user = new User();
 
-
+    //pass
     @Test
     void createUser() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    boolean expected = true;
-
-                    boolean actual = userService.createUser("name", "password");
-
-                    Assert.assertEquals(expected, actual);
-                });
 
 
+        boolean actual = userService.createUser("name", "password");
+        Assert.assertTrue(actual);
     }
 
     @Test
@@ -57,19 +53,13 @@ class UserServiceImpTest {
 
     }
 
+    //pass
     @Test
     void findUserById() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    user.setId(1);
-                    User expected = user;
+//
 
-                    User actual = userService.findUserById(1);
-
-                    Assert.assertEquals(expected, actual);
-                });
-
-
+        User res = userService.findUserById(1);
+        Assert.assertTrue(res!=null);
     }
 
     @Test
@@ -107,7 +97,7 @@ class UserServiceImpTest {
                 () -> {
                     boolean expected = true;
 
-                    boolean actual = userService.UserLogout();
+                    boolean actual = userService.userLogout();
 
                     Assert.assertEquals(expected, actual);
                 });

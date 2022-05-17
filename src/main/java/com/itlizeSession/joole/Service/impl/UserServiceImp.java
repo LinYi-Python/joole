@@ -100,7 +100,7 @@ public class UserServiceImp implements UserService {
     }
 
     //Return System.out.println saying the user was logged out successfully
-    public boolean UserLogout() {
+    public boolean userLogout() {
 
 
         try {
