@@ -1,6 +1,10 @@
 package com.itlizeSession.joole.Service.impl;
 
+import com.itlizeSession.joole.Entity.*;import com.itlizeSession.joole.Entity.*;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import java.sql.Timestamp;
 
 /**
  * @ClassName ProductServiceImpTest
@@ -13,6 +17,7 @@ class ProductServiceImpTest {
 
     @org.junit.jupiter.api.Test
     void findOneById() {
+
     }
 
     @org.junit.jupiter.api.Test
@@ -25,6 +30,12 @@ class ProductServiceImpTest {
 
     @org.junit.jupiter.api.Test
     void create() {
+
+        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        Timestamp updateTime = new Timestamp(System.currentTimeMillis());
+        Product product = new Product("Test1", 2022, "Meta", createTime, updateTime);
+        Manufacturer manufacturer = new Manufacturer()
+
     }
 
     @org.junit.jupiter.api.Test

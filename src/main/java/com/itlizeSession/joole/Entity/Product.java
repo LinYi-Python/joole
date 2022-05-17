@@ -123,12 +123,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, ProductType productType, TechnicalDetail technicalDetail, Manufacturer manufacturerDetailId, Integer modelYear, String brand, Timestamp createTime, Timestamp updateTime) {
-        this.id = id;
+    public Product( String name, Integer modelYear, String brand, Timestamp createTime, Timestamp updateTime) {
         this.name = name;
-        this.productType = productType;
-        this.technicalDetail = technicalDetail;
-        this.manufacturerDetailId = manufacturerDetailId;
         this.modelYear = modelYear;
         this.brand = brand;
         this.createTime = createTime;
