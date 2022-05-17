@@ -59,6 +59,7 @@ public class ProjectServiceImp implements ProjectService {
             if (exit) {
                 return false;
             }
+            userRepository.addProject(project, user);
             userRepository.save(user);
 
         } catch (Exception e){
@@ -102,8 +103,14 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public void deleteAll(){
-        projectRepository.deleteAll();
+    public boolean deleteAll(){
+        try{
+            projectRepository.deleteAll();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
