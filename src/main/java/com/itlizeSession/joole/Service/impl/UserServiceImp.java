@@ -4,14 +4,18 @@ import com.itlizeSession.joole.Entity.*;
 import com.itlizeSession.joole.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.itlizeSession.joole.Service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImp implements UserService {
 
     @Autowired
     private UserRepository repository;
-
+    
+    @Autowired 
+    private ProjectRepository projectRepository;
 
     public boolean createUser(String username, String password) {
 
@@ -110,5 +114,16 @@ public class UserServiceImp implements UserService {
         return true;
     }
 
-
+    public boolean addProject(Project project, User user) {
+        try {
+            project.setUser(user);
+            repository.save(user);
+            projectRepository.save(project);
+        } catch (Exception e) {
+            System.out.println("" + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }
