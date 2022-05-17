@@ -14,6 +14,7 @@ import java.util.List;
  * @Date 5/16/22 02:51
  * @Version 1.0
  **/
+@Service
 public class ProductTypeServiceImp implements ProductTypeService{
     @Autowired
     private ProductTypeRepository productTypeRepository;

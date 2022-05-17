@@ -26,7 +26,8 @@ import java.util.List;
  * @Date 5/16/22 15:43
  * @Version 1.0
  **/
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 class ProductServiceImpTest {
 
     @Autowired

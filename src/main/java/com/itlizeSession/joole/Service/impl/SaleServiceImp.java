@@ -17,6 +17,7 @@ import java.util.List;
  * @Date 5/16/22 07:09
  * @Version 1.0
  **/
+@Service
 public class SaleServiceImp implements SaleService{
     @Autowired
     private SaleRepository saleRepository;

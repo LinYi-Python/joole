@@ -58,6 +58,13 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Project> projects = new HashSet<>();
 
+    public Collection<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
 
     public User(String userName, String password, String name,
                 String profilePictureUrl, Timestamp createTime, Timestamp updateTime) {

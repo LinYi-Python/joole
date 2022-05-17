@@ -64,7 +64,7 @@ public class UserServiceImp implements UserService {
     //return true if user password and username exists, else false
     public boolean userLogin(String username, String password) {
 
-        User target = repository.findUserByUsername(username);
+        User target = repository.findUserByUserName(username);
 
         if (target == null || !target.getPassword().equals(password) || !target.getUserName().equals(username)) {
             return false;

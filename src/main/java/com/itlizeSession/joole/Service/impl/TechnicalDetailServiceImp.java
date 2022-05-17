@@ -16,6 +16,7 @@ import java.util.List;
  * @Date 5/16/22 03:22
  * @Version 1.0
  **/
+@Service
 public class TechnicalDetailServiceImp implements  TechnicalDetailService{
 
     @Autowired

@@ -18,6 +18,7 @@ import java.util.Optional;
  * @Date 5/13/22 11:34
  * @Version 1.0
  **/
+@Service
 public class ProductServiceImp implements ProductService{
     @Autowired
     private ProductRepository productRepository;
