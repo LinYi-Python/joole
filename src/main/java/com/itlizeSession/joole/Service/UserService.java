@@ -1,5 +1,6 @@
 package com.itlizeSession.joole.Service;
 
+import com.itlizeSession.joole.Entity.Project;
 import com.itlizeSession.joole.Entity.User;
 
 public interface UserService {
@@ -18,5 +19,5 @@ public interface UserService {
     //Return System.out.println saying the user was logged out successfully
     public boolean UserLogout();
 
-
+    public boolean addProject(Project project, User user);
 }
