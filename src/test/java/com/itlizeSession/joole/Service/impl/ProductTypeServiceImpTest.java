@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,120 +33,91 @@ class ProductTypeServiceImpTest {
 
     @Test
     void findOneById() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    int id = 1;
-                    productType.setId(id);
-                    ProductType expected = productType;
 
-                    ProductType actual = productTypeService.findOneById(id);
+        int id = 1;
+//        productType.setId(id);
+//        ProductType expected = productType;
 
-                    Assert.assertEquals(expected, actual);
-                });
+        ProductType actual = productTypeService.findOneById(id);
+        Assert.assertTrue(actual != null);
+//        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void findAll() {
-        assertThrows(NullPointerException.class,
-                () -> {
 
-                    List<ProductType> expected = new ArrayList<>();
-                    //expected.add(productType);
+//        List<ProductType> expected = new ArrayList<>();
+        //expected.add(productType);
 
-                    List<ProductType> actual = productTypeService.findAll();
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        List<ProductType> actual = productTypeService.findAll();
+        Assert.assertTrue(actual != null);
+//        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void save() {
-        assertThrows(NullPointerException.class,
-                () -> {
+//        ProductType expected = productType;
 
-                    ProductType expected = productType;
-
-                    ProductType actual = productTypeService.save(productType);
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        ProductType actual = productTypeService.save(productType);
+        Assert.assertTrue(actual != null);
+//        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void findByName() {
-        assertThrows(NullPointerException.class,
-                () -> {
 
+        String description = "Fans";
+//        productType.setProductTypeDetail(description);
+//        productTypeService.save(productType);
 
-                    String description = "detail";
-                    productType.setProductTypeDetail(description);
-                    productTypeService.save(productType);
+//        ProductType expected = productType;
 
-                    ProductType expected = productType;
-
-                    ProductType actual = productTypeService.findByName(description);
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        ProductType actual = productTypeService.findByName(description);
+        Assert.assertTrue(actual != null);
+//        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void create() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    boolean expected = true;
 
-                    ProductType productType = new ProductType();
-                    boolean actual = productTypeService.create(productType);
-
-                    Assert.assertEquals(expected, actual);
-                });
+//        boolean expected = true;
+        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        ProductType productType = new ProductType("testName", createTime);
+//        productType.setId(666);
+        boolean actual = productTypeService.create(productType);
+        Assert.assertTrue(actual);
+//        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void delete() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    boolean expected = true;
 
-                    ProductType deleteTest = new ProductType();
-                    productTypeService.save(deleteTest);
-                    boolean actual = productTypeService.delete(deleteTest);
+//        boolean expected = true;
 
-                    Assert.assertEquals(expected, actual);
-                });
+        ProductType deleteTest = new ProductType();
+        productTypeService.save(deleteTest);
+        boolean actual = productTypeService.delete(deleteTest);
+        Assert.assertTrue(actual);
+//        Assert.assertEquals(expected, actual);
     }
 
     @Test
     void get() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    int id = 1;
-                    ProductType expected = new ProductType();
-                    expected.setId(id);
 
-                    ProductType actual = productTypeService.get(id);
+        int id = 1;
 
-                    Assert.assertEquals(expected, actual);
-                });
+
+        ProductType actual = productTypeService.get(id);
+
+        Assert.assertTrue(actual != null);
     }
 
     @Test
     void update() {
-        assertThrows(NullPointerException.class,
-                () -> {
 
-                    boolean expected = true;
+        ProductType productType = productTypeService.get(36);
 
-                    ProductType productType = new ProductType();
-
-                    boolean actual = productTypeService.update(productType);
-
-                    Assert.assertEquals(expected, actual);
-
-                });
+        boolean actual = productTypeService.update(productType);
+        Assert.assertTrue(actual);
     }
 }

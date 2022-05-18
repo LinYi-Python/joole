@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,22 +71,24 @@ public class ProductServiceImp implements ProductService{
 //        }
 
         try{
-            productRepository.save(product);
+//            productRepository.save(product);
 
             manufacturer.addProducts(product);
-            productRepository.save(product);
+//            productRepository.save(product);
             manufacturerRepository.save(manufacturer);
 
             technicalDetail.addProducts(product);
-            productRepository.save(product);
+//            productRepository.save(product);
             technicalDetailRepository.save(technicalDetail);
 
             productType.addProducts(product);
-            productRepository.save(product);
+//            productRepository.save(product);
             productTypeRepository.save(productType);
 
             sale.addProducts(product);
-            productRepository.save(product);
+//            productRepository.save(product);
+            saleRepository.save(sale);
+
             productRepository.save(product);
 
 
@@ -187,7 +190,29 @@ public class ProductServiceImp implements ProductService{
         return productRepository.findProductsByProductTypeAndTechnicalDetailAndModelYearAndBrand(productType,
                 technicalDetail, modelYear, brand);
     }
-    
-    
+
+    @Override
+    public TechnicalDetail findProductsTechnicalDetailBypProductId(Integer id){
+        Product product = productRepository.findById(id).orElse(null);
+        TechnicalDetail technicalDetailId = product.getTechnicalDetail();
+        Integer Tid = technicalDetailId.getId();
+        TechnicalDetail  result = technicalDetailRepository.getTechnicalDetailById(Tid);
+
+        return result;
+    }
+
+    @Override
+    public Manufacturer findManufacturerByProductId(Integer id){
+        Product product = productRepository.findById(id).orElse(null);
+        Manufacturer manufacturer = product.getManufacturerDetailId();
+        return manufacturer;
+    }
+
+    @Override
+    public Sale findSaleByProductId(Integer id){
+        Product product = productRepository.findById(id).orElse(null);
+        Sale sale = product.getSale();
+        return sale;
+    }
 
 }

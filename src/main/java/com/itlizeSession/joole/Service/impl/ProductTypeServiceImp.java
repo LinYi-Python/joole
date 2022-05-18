@@ -46,11 +46,11 @@ public class ProductTypeServiceImp implements ProductTypeService{
             return false;
         }
 
-        ProductType target = findOneById(productType.getId());
-        if(target != null) {
-            System.out.println("ProductType already exists");
-            return false;
-        }
+//        ProductType target = findOneById(productType.getId());
+//        if(target != null) {
+//            System.out.println("ProductType already exists");
+//            return false;
+//        }
 
         try{
             productTypeRepository.save(productType);

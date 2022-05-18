@@ -16,4 +16,5 @@ import java.util.List;
 public interface TechnicalDetailRepository extends JpaRepository<TechnicalDetail, Integer>{
     public TechnicalDetail getTechnicalDetailByTechnicalDetailName(String name);
     public List<TechnicalDetail> getTechnicalDetailByProductType(ProductType productType);
+    public TechnicalDetail getTechnicalDetailById(Integer id);
 }

@@ -39,11 +39,11 @@ public interface ProductService {
 
     public List<Product> findProducesByProductType(String name);
 
-//    public List<TechnicalDetail> findProductsTechnicalDetailBypProductId(Integer id);
-//
-//    public Manufacturer findManufacturerByProductId(Integer id);
-//
-//    public Sale findSaleByProductId(Integer id);
+    public TechnicalDetail findProductsTechnicalDetailBypProductId(Integer id);
+
+    public Manufacturer findManufacturerByProductId(Integer id);
+
+    public Sale findSaleByProductId(Integer id);
 
     public List<Product> findProductsByProductTypeAndTechnicalDetail(String name, TechnicalDetail technicalDetail);
 

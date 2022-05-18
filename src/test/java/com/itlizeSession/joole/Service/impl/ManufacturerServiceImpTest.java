@@ -31,45 +31,38 @@ class ManufacturerServiceImpTest {
 
     @Test
     void findOneById() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    int id = 1;
-                    manufacturer.setId(id);
 
-                    Manufacturer expected = manufacturer;
+        int id = 1;
+        manufacturer.setId(id);
 
-                    Manufacturer actual = manufactureService.findOneById(id);
+//        Manufacturer expected = manufacturer;
 
-                    Assert.assertEquals(expected, actual);
-                });
+        Manufacturer actual = manufactureService.findOneById(id);
+        Assert.assertTrue(actual != null);
 
+//        Assert.assertEquals(expected, actual);
 
     }
 
     @Test
     void findAll() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    List<Manufacturer> expected = new ArrayList<Manufacturer>();
 
-                    List<Manufacturer> actual = manufactureService.findAll();
+//        List<Manufacturer> expected = new ArrayList<Manufacturer>();
 
-                    Assert.assertEquals(expected, actual);
-                });
+        List<Manufacturer> actual = manufactureService.findAll();
 
+//        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual != null);
 
     }
 
     @Test
     void save() {
-        assertThrows(NullPointerException.class,
-                () -> {
-                    Manufacturer expected = manufacturer;
+//        Manufacturer expected = manufacturer;
 
-                    Manufacturer actual = manufactureService.save(manufacturer);
+        Manufacturer actual = manufactureService.save(manufacturer);
 
-                    Assert.assertEquals(expected, actual);
-                });
-        
+//        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual != null);
     }
 }
