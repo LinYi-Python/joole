@@ -41,11 +41,9 @@ class ProjectServiceImpTest {
 
     @Test
     void findOneById() {
-        int id = 1;
-        Project project = new Project();
-        project.setId(1);
-        Project actual = projectService.findOneById(id);
-        Assert.assertEquals(project, actual);
+
+        Project actual = projectService.get(3);
+        Assert.assertTrue(actual != null);
     }
 
     @Test
@@ -63,9 +61,8 @@ class ProjectServiceImpTest {
 
     @Test
     void create() {
-        Project toAdd = new Project();
-        User user = userService.findUserById(0);
-        toAdd.setId(0);
+        User user = new User("x", "a","a", null, null,null);
+        Project toAdd = new Project(100, user, null, null);
         boolean isSuccessful = projectService.create(toAdd, user);
         Assert.assertTrue(isSuccessful);
     }
@@ -73,9 +70,9 @@ class ProjectServiceImpTest {
     @Test
     void update() {
         Timestamp createTime = new Timestamp(System.currentTimeMillis());
-        Timestamp updateTime = new Timestamp(System.currentTimeMillis());
+//        Timestamp updateTime = new Timestamp(System.currentTimeMillis());
         User user = new User();
-        Project project = new Project(2, user, createTime, updateTime);
+        Project project = new Project(11, null, null, null);
         boolean result = projectService.update(project);
         Assert.assertTrue(result);
     }
@@ -83,8 +80,7 @@ class ProjectServiceImpTest {
 
     @Test
     void delete() {
-        Project toDelete = projectService.get(1);
-        System.out.println("deleting" + toDelete.getId());
+        Project toDelete = projectService.get(13);
         boolean isSuccessful = projectService.delete(toDelete);
         Assert.assertTrue(isSuccessful);
     }
