@@ -61,8 +61,8 @@ class ProjectServiceImpTest {
 
     @Test
     void create() {
-        User user = new User("x", "a","a", null, null,null);
-        Project toAdd = new Project(100, user, null, null);
+        User user = new User("b", "x","q", null, null,null);
+        Project toAdd = new Project(90, user, null, null);
         boolean isSuccessful = projectService.create(toAdd, user);
         Assert.assertTrue(isSuccessful);
     }
@@ -80,7 +80,7 @@ class ProjectServiceImpTest {
 
     @Test
     void delete() {
-        Project toDelete = projectService.get(13);
+        Project toDelete = projectService.get(95);
         boolean isSuccessful = projectService.delete(toDelete);
         Assert.assertTrue(isSuccessful);
     }
