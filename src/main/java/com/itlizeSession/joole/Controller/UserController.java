@@ -28,7 +28,7 @@ public class UserController {
      @Autowired
      private UserServiceImp userService;
 
-     @GetMapping("/usersCreate")
+     @PostMapping("/usersCreate")
      public ResponseEntity<?> createUser(@RequestParam("username") String username,
                @RequestParam("password") String password) {
 
@@ -37,7 +37,7 @@ public class UserController {
           return new ResponseEntity<>(createUser, HttpStatus.OK);
      }
 
-     @GetMapping("/usersDelete")
+     @PostMapping("/usersDelete")
      public ResponseEntity<?> delete(@RequestParam("password") String password,
                @RequestParam("id") int id) {
 
@@ -63,7 +63,7 @@ public class UserController {
           return new ResponseEntity<>(userLogin, HttpStatus.OK);
      }
 
-     @GetMapping("/usersUpdate")
+     @PostMapping("/usersUpdate")
      public ResponseEntity<?> updateUser(@RequestParam("username") String userName,
                @RequestParam("password") String password, @RequestParam("name") String name,
                @RequestParam("profilePic") String profilePictureUrl) {
