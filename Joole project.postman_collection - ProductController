@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "00fe1105-ff19-41db-889f-1059b3c376ee",
+		"name": "JOOLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/ProductController/getAllProductFromProductType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getProductType",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getProductType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/getAllProductFromProductType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getAllProductFromProductType?ProductType=Fans",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getAllProductFromProductType"
+					],
+					"query": [
+						{
+							"key": "ProductType",
+							"value": "Fans"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/getProductInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getProductInfo?ProductId=2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getProductInfo"
+					],
+					"query": [
+						{
+							"key": "ProductId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/createProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/createProduct?Productname=testPost&model_year=2077&brand=ios&product_type_id=1&technical_detail_id=1&manufacturer_detail_id=1&sale_id=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"createProduct"
+					],
+					"query": [
+						{
+							"key": "Productname",
+							"value": "testPost"
+						},
+						{
+							"key": "model_year",
+							"value": "2077"
+						},
+						{
+							"key": "brand",
+							"value": "ios"
+						},
+						{
+							"key": "product_type_id",
+							"value": "1"
+						},
+						{
+							"key": "technical_detail_id",
+							"value": "1"
+						},
+						{
+							"key": "manufacturer_detail_id",
+							"value": "1"
+						},
+						{
+							"key": "sale_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/updateProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/updateProduct?ProductId=5&model_year=2042&brand=NY",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"updateProduct"
+					],
+					"query": [
+						{
+							"key": "ProductId",
+							"value": "5"
+						},
+						{
+							"key": "model_year",
+							"value": "2042"
+						},
+						{
+							"key": "brand",
+							"value": "NY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/deleteProductByProductId",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/deleteProductByProductId?ProductId=40",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"deleteProductByProductId"
+					],
+					"query": [
+						{
+							"key": "ProductId",
+							"value": "40"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/getProductTechnicalDetailById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getProductTechnicalDetailById?ProductId=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getProductTechnicalDetailById"
+					],
+					"query": [
+						{
+							"key": "ProductId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/getManufacturerByProductId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getManufacturerByProductId?ProductId=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getManufacturerByProductId"
+					],
+					"query": [
+						{
+							"key": "ProductId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/getSaleByProductId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getSaleByProductId?ProductId=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getSaleByProductId"
+					],
+					"query": [
+						{
+							"key": "ProductId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductController/getAllProductFromProductTypeAndTechnicalDetailAndModelYearAndBrand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8081/joole/ProductController/getAllProductFromProductTypeAndTechnicalDetailAndModelYearAndBrand?name=Fans&techicalDetailId=1&modelYear=2000&brand=Apple",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"joole",
+						"ProductController",
+						"getAllProductFromProductTypeAndTechnicalDetailAndModelYearAndBrand"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Fans"
+						},
+						{
+							"key": "techicalDetailId",
+							"value": "1"
+						},
+						{
+							"key": "modelYear",
+							"value": "2000"
+						},
+						{
+							"key": "brand",
+							"value": "Apple"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
