@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  **/
 @RestController
-@RequestMapping("/controller")
+@RequestMapping("/userController")
 public class UserController {
 
      @Autowired
@@ -85,12 +85,4 @@ public class UserController {
           return new ResponseEntity<>(userLogout, HttpStatus.OK);
      }
 
-     // @GetMapping("/usersAddProject")
-     // public ResponseEntity<?> addProject(@RequestParam("project") Project project,
-     // @RequestParam("user") User user) {
-
-     // boolean addProject = userService.addProject(project, user);
-
-     // return new ResponseEntity<>(addProject, HttpStatus.OK);
-     // }
 }
