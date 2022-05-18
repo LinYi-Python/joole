@@ -53,13 +53,9 @@ public class ProjectServiceImp implements ProjectService {
         }
 
         try {
-            projectRepository.save(project);
-
-            boolean exit = user.getProjects().add(project);
-            if (exit) {
-                return false;
-            }
+            project.setUser(user);
             userRepository.save(user);
+            projectRepository.save(project);
 
         } catch (Exception e){
             System.out.println("something wrong happens when creating" + e.getMessage());
